@@ -1,181 +1,183 @@
 --------------------------------------------------------------------------------
 -- ENCOUNTER_MAPPING
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE encounter_mapping (
-  encounter_ide         STRING    NOT NULL,
-  encounter_ide_source  STRING    NOT NULL,
-  project_id            STRING    NOT NULL,
-  encounter_num         INT       NOT NULL,
-  patient_ide           STRING    NOT NULL,
-  patient_ide_source    STRING    NOT NULL,
-  encounter_ide_status  STRING,
-  upload_date           TIMESTAMP,
-  update_date           TIMESTAMP,
-  download_date         TIMESTAMP,
-  import_date           TIMESTAMP,
-  sourcesystem_cd       STRING,
-  upload_id             INT
+CREATE OR REPLACE TABLE ENCOUNTER_MAPPING (
+  ENCOUNTER_IDE         STRING    NOT NULL,
+  ENCOUNTER_IDE_SOURCE  STRING    NOT NULL,
+  PROJECT_ID            STRING    NOT NULL,
+  ENCOUNTER_NUM         INT       NOT NULL,
+  PATIENT_IDE           STRING    NOT NULL,
+  PATIENT_IDE_SOURCE    STRING    NOT NULL,
+  ENCOUNTER_IDE_STATUS  STRING,
+  UPLOAD_DATE           TIMESTAMP,
+  UPDATE_DATE           TIMESTAMP,
+  DOWNLOAD_DATE         TIMESTAMP,
+  IMPORT_DATE           TIMESTAMP,
+  SOURCESYSTEM_CD       STRING,
+  UPLOAD_ID             INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- PATIENT_MAPPING
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE patient_mapping (
-  patient_ide         STRING    NOT NULL,
-  patient_ide_source  STRING    NOT NULL,
-  patient_num         INT       NOT NULL,
-  patient_ide_status  STRING,
-  project_id          STRING    NOT NULL,
-  upload_date         TIMESTAMP,
-  update_date         TIMESTAMP,
-  download_date       TIMESTAMP,
-  import_date         TIMESTAMP,
-  sourcesystem_cd     STRING,
-  upload_id           INT
+CREATE OR REPLACE TABLE PATIENT_MAPPING (
+  PATIENT_IDE         STRING    NOT NULL,
+  PATIENT_IDE_SOURCE  STRING    NOT NULL,
+  PATIENT_NUM         INT       NOT NULL,
+  PATIENT_IDE_STATUS  STRING,
+  PROJECT_ID          STRING    NOT NULL,
+  UPLOAD_DATE         TIMESTAMP,
+  UPDATE_DATE         TIMESTAMP,
+  DOWNLOAD_DATE       TIMESTAMP,
+  IMPORT_DATE         TIMESTAMP,
+  SOURCESYSTEM_CD     STRING,
+  UPLOAD_ID           INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- CODE_LOOKUP
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE code_lookup (
-  table_cd     STRING    NOT NULL,
-  column_cd    STRING    NOT NULL,
-  code_cd      STRING    NOT NULL,
-  name_char    STRING,
-  lookup_blob  STRING,
-  upload_date  TIMESTAMP,
-  update_date  TIMESTAMP,
-  download_date TIMESTAMP,
-  import_date  TIMESTAMP,
-  sourcesystem_cd STRING,
-  upload_id    INT
+CREATE OR REPLACE TABLE CODE_LOOKUP (
+  TABLE_CD      STRING    NOT NULL,
+  COLUMN_CD     STRING    NOT NULL,
+  CODE_CD       STRING    NOT NULL,
+  NAME_CHAR     STRING,
+  LOOKUP_BLOB   STRING,
+  UPLOAD_DATE   TIMESTAMP,
+  UPDATE_DATE   TIMESTAMP,
+  DOWNLOAD_DATE TIMESTAMP,
+  IMPORT_DATE   TIMESTAMP,
+  SOURCESYSTEM_CD STRING,
+  UPLOAD_ID     INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- CONCEPT_DIMENSION
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE concept_dimension (
-  concept_path     STRING    NOT NULL,
-  concept_cd       STRING,
-  name_char        STRING,
-  concept_blob     STRING,
-  update_date      TIMESTAMP,
-  download_date    TIMESTAMP,
-  import_date      TIMESTAMP,
-  sourcesystem_cd  STRING,
-  upload_id        INT
+CREATE OR REPLACE TABLE CONCEPT_DIMENSION (
+  CONCEPT_PATH    STRING    NOT NULL,
+  CONCEPT_CD      STRING,
+  NAME_CHAR       STRING,
+  CONCEPT_BLOB    STRING,
+  UPDATE_DATE     TIMESTAMP,
+  DOWNLOAD_DATE   TIMESTAMP,
+  IMPORT_DATE     TIMESTAMP,
+  SOURCESYSTEM_CD STRING,
+  UPLOAD_ID       INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- OBSERVATION_FACT
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE observation_fact (
-  encounter_num      INT       NOT NULL,
-  patient_num        INT       NOT NULL,
-  concept_cd         STRING    NOT NULL,
-  provider_id        STRING    NOT NULL,
-  start_date         TIMESTAMP NOT NULL,
-  modifier_cd        STRING    NOT NULL,
-  instance_num       INT       NOT NULL,
-  valtype_cd         STRING,
-  tval_char          STRING,
-  nval_num           DECIMAL(18,5),
-  valueflag_cd       STRING,
-  quantity_num       DECIMAL(18,5),
-  units_cd           STRING,
-  end_date           TIMESTAMP,
-  location_cd        STRING,
-  observation_blob   STRING,
-  confidence_num     DECIMAL(18,5),
-  update_date        TIMESTAMP,
-  download_date      TIMESTAMP,
-  import_date        TIMESTAMP,
-  sourcesystem_cd    STRING,
-  upload_id          INT,
-  text_search_index  INT
+CREATE OR REPLACE TABLE OBSERVATION_FACT (
+  ENCOUNTER_NUM       INT       NOT NULL,
+  PATIENT_NUM         INT       NOT NULL,
+  CONCEPT_CD          STRING    NOT NULL,
+  PROVIDER_ID         STRING    NOT NULL,
+  START_DATE          TIMESTAMP NOT NULL,
+  MODIFIER_CD         STRING    NOT NULL,
+  INSTANCE_NUM        INT       NOT NULL,
+  VALTYPE_CD          STRING,
+  TVAL_CHAR           STRING,
+  NVAL_NUM            DECIMAL(18,5),
+  VALUEFLAG_CD        STRING,
+  QUANTITY_NUM        DECIMAL(18,5),
+  UNITS_CD            STRING,
+  END_DATE            TIMESTAMP,
+  LOCATION_CD         STRING,
+  OBSERVATION_BLOB    STRING,
+  CONFIDENCE_NUM      DECIMAL(18,5),
+  UPDATE_DATE         TIMESTAMP,
+  DOWNLOAD_DATE       TIMESTAMP,
+  IMPORT_DATE         TIMESTAMP,
+  SOURCESYSTEM_CD     STRING,
+  UPLOAD_ID           INT,
+  TEXT_SEARCH_INDEX   INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- PATIENT_DIMENSION
+-- TODO: view
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE patient_dimension (
-  patient_num        INT       NOT NULL,
-  vital_status_cd    STRING,
-  birth_date         TIMESTAMP,
-  death_date         TIMESTAMP,
-  sex_cd             STRING,
-  age_in_years_num   INT,
-  language_cd        STRING,
-  race_cd            STRING,
-  marital_status_cd  STRING,
-  religion_cd        STRING,
-  zip_cd             STRING,
-  statecityzip_path  STRING,
-  income_cd          STRING,
-  patient_blob       STRING,
-  update_date        TIMESTAMP,
-  download_date      TIMESTAMP,
-  import_date        TIMESTAMP,
-  sourcesystem_cd    STRING,
-  upload_id          INT
+CREATE OR REPLACE TABLE PATIENT_DIMENSION_V2 (
+  PATIENT_NUM        INT       NOT NULL,
+  VITAL_STATUS_CD    STRING,
+  BIRTH_DATE         TIMESTAMP,
+  DEATH_DATE         TIMESTAMP,
+  SEX_CD             STRING,
+  AGE_IN_YEARS_NUM   INT,
+  LANGUAGE_CD        STRING,
+  RACE_CD            STRING,
+  MARITAL_STATUS_CD  STRING,
+  RELIGION_CD        STRING,
+  ZIP_CD             STRING,
+  STATECITYZIP_PATH  STRING,
+  INCOME_CD          STRING,
+  PATIENT_BLOB       STRING,
+  UPDATE_DATE        TIMESTAMP,
+  DOWNLOAD_DATE      TIMESTAMP,
+  IMPORT_DATE        TIMESTAMP,
+  SOURCESYSTEM_CD    STRING,
+  UPLOAD_ID          INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- PROVIDER_DIMENSION
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE provider_dimension (
-  provider_id       STRING    NOT NULL,
-  provider_path     STRING    NOT NULL,
-  name_char         STRING,
-  provider_blob     STRING,
-  update_date       TIMESTAMP,
-  download_date     TIMESTAMP,
-  import_date       TIMESTAMP,
-  sourcesystem_cd   STRING,
-  upload_id         INT
+CREATE OR REPLACE TABLE PROVIDER_DIMENSION (
+  PROVIDER_ID       STRING    NOT NULL,
+  PROVIDER_PATH     STRING    NOT NULL,
+  NAME_CHAR         STRING,
+  PROVIDER_BLOB     STRING,
+  UPDATE_DATE       TIMESTAMP,
+  DOWNLOAD_DATE     TIMESTAMP,
+  IMPORT_DATE       TIMESTAMP,
+  SOURCESYSTEM_CD   STRING,
+  UPLOAD_ID         INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- VISIT_DIMENSION
+-- TODO: view
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE visit_dimension (
-  encounter_num     INT       NOT NULL,
-  patient_num       INT       NOT NULL,
-  active_status_cd  STRING,
-  start_date        TIMESTAMP,
-  end_date          TIMESTAMP,
-  inout_cd          STRING,
-  location_cd       STRING,
-  location_path     STRING,
-  length_of_stay    INT,
-  visit_blob        STRING,
-  update_date       TIMESTAMP,
-  download_date     TIMESTAMP,
-  import_date       TIMESTAMP,
-  sourcesystem_cd   STRING,
-  upload_id         INT
+CREATE OR REPLACE TABLE VISIT_DIMENSION_V2 (
+  ENCOUNTER_NUM     INT       NOT NULL,
+  PATIENT_NUM       INT       NOT NULL,
+  ACTIVE_STATUS_CD  STRING,
+  START_DATE        TIMESTAMP,
+  END_DATE          TIMESTAMP,
+  INOUT_CD          STRING,
+  LOCATION_CD       STRING,
+  LOCATION_PATH     STRING,
+  LENGTH_OF_STAY    INT,
+  VISIT_BLOB        STRING,
+  UPDATE_DATE       TIMESTAMP,
+  DOWNLOAD_DATE     TIMESTAMP,
+  IMPORT_DATE       TIMESTAMP,
+  SOURCESYSTEM_CD   STRING,
+  UPLOAD_ID         INT
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- MODIFIER_DIMENSION
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE modifier_dimension (
-  modifier_path     STRING    NOT NULL,
-  modifier_cd       STRING,
-  name_char         STRING,
-  modifier_blob     STRING,
-  update_date       TIMESTAMP,
-  download_date     TIMESTAMP,
-  import_date       TIMESTAMP,
-  sourcesystem_cd   STRING,
-  upload_id         INT
+CREATE OR REPLACE TABLE MODIFIER_DIMENSION (
+  MODIFIER_PATH     STRING    NOT NULL,
+  MODIFIER_CD       STRING,
+  NAME_CHAR         STRING,
+  MODIFIER_BLOB     STRING,
+  UPDATE_DATE       TIMESTAMP,
+  DOWNLOAD_DATE     TIMESTAMP,
+  IMPORT_DATE       TIMESTAMP,
+  SOURCESYSTEM_CD   STRING,
+  UPLOAD_ID         INT
 )
-USING iceberg;
+USING ICEBERG;

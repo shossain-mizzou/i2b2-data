@@ -1,84 +1,84 @@
 --------------------------------------------------------------------------------
 -- DATAMART_REPORT
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE datamart_report (
-  total_patient         INT,
-  total_observationfact INT,
-  total_event           INT,
-  report_date           TIMESTAMP
+CREATE OR REPLACE TABLE DATAMART_REPORT (
+  TOTAL_PATIENT         INT,
+  TOTAL_OBSERVATIONFACT INT,
+  TOTAL_EVENT           INT,
+  REPORT_DATE           TIMESTAMP
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- UPLOAD_STATUS
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE upload_status (
-  upload_id       INT,
-  upload_label    STRING     NOT NULL,
-  user_id         STRING     NOT NULL,
-  source_cd       STRING     NOT NULL,
-  no_of_record    BIGINT,
-  loaded_record   BIGINT,
-  deleted_record  BIGINT,
-  load_date       TIMESTAMP  NOT NULL,
-  end_date        TIMESTAMP,
-  load_status     STRING,
-  message         STRING,
-  input_file_name STRING,
-  log_file_name   STRING,
-  transform_name  STRING
+CREATE OR REPLACE TABLE UPLOAD_STATUS (
+  UPLOAD_ID        INT,
+  UPLOAD_LABEL     STRING   NOT NULL,
+  USER_ID          STRING   NOT NULL,
+  SOURCE_CD        STRING   NOT NULL,
+  NO_OF_RECORD     BIGINT,
+  LOADED_RECORD    BIGINT,
+  DELETED_RECORD   BIGINT,
+  LOAD_DATE        TIMESTAMP NOT NULL,
+  END_DATE         TIMESTAMP,
+  LOAD_STATUS      STRING,
+  MESSAGE          STRING,
+  INPUT_FILE_NAME  STRING,
+  LOG_FILE_NAME    STRING,
+  TRANSFORM_NAME   STRING
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- SET_TYPE
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE set_type (
-  id          INT,
-  name        STRING,
-  create_date TIMESTAMP
+CREATE OR REPLACE TABLE SET_TYPE (
+  ID           INT,
+  NAME         STRING,
+  CREATE_DATE  TIMESTAMP
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- SOURCE_MASTER
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE source_master (
-  source_cd    STRING     NOT NULL,
-  description  STRING,
-  create_date  TIMESTAMP
+CREATE OR REPLACE TABLE SOURCE_MASTER (
+  SOURCE_CD    STRING   NOT NULL,
+  DESCRIPTION  STRING,
+  CREATE_DATE  TIMESTAMP
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- SET_UPLOAD_STATUS
 --------------------------------------------------------------------------------
-CREATE OR REPLACE TABLE set_upload_status (
-  upload_id      INT,
-  set_type_id    INT,
-  source_cd      STRING     NOT NULL,
-  no_of_record   BIGINT,
-  loaded_record  BIGINT,
-  deleted_record BIGINT,
-  load_date      TIMESTAMP  NOT NULL,
-  end_date       TIMESTAMP,
-  load_status    STRING,
-  message        STRING,
-  input_file_name STRING,
-  log_file_name   STRING,
-  transform_name  STRING
+CREATE OR REPLACE TABLE SET_UPLOAD_STATUS (
+  UPLOAD_ID       INT,
+  SET_TYPE_ID     INT,
+  SOURCE_CD       STRING   NOT NULL,
+  NO_OF_RECORD    BIGINT,
+  LOADED_RECORD   BIGINT,
+  DELETED_RECORD  BIGINT,
+  LOAD_DATE       TIMESTAMP NOT NULL,
+  END_DATE        TIMESTAMP,
+  LOAD_STATUS     STRING,
+  MESSAGE         STRING,
+  INPUT_FILE_NAME STRING,
+  LOG_FILE_NAME   STRING,
+  TRANSFORM_NAME  STRING
 )
-USING iceberg;
+USING ICEBERG;
 
 --------------------------------------------------------------------------------
 -- Seed data for SET_TYPE
 --------------------------------------------------------------------------------
-INSERT INTO set_type VALUES
-  (1,'event_set',   current_timestamp()),
-  (2,'patient_set', current_timestamp()),
-  (3,'concept_set', current_timestamp()),
-  (4,'observer_set',current_timestamp()),
-  (5,'observation_set',current_timestamp()),
-  (6,'pid_set',     current_timestamp()),
-  (7,'eid_set',     current_timestamp()),
-  (8,'modifier_set',current_timestamp());
+INSERT INTO SET_TYPE VALUES
+  (1, 'EVENT_SET',      CURRENT_TIMESTAMP()),
+  (2, 'PATIENT_SET',    CURRENT_TIMESTAMP()),
+  (3, 'CONCEPT_SET',    CURRENT_TIMESTAMP()),
+  (4, 'OBSERVER_SET',   CURRENT_TIMESTAMP()),
+  (5, 'OBSERVATION_SET',CURRENT_TIMESTAMP()),
+  (6, 'PID_SET',        CURRENT_TIMESTAMP()),
+  (7, 'EID_SET',        CURRENT_TIMESTAMP()),
+  (8, 'MODIFIER_SET',   CURRENT_TIMESTAMP());
